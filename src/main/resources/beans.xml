@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+    <!--     PARA USAR LOCAL EN EL BANCO -->
+
+    <!-- Configuración del DataSource para GIOM -->
+    <bean id="dataSourceGiom" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@sun2231d.banvendes.corp:1536/GIOMD.banvendes.corp"/>
+        <property name="username" value="GIOM"/>
+        <property name="password" value="giom_26"/>
+    </bean>
+
+    <!-- Creación de JdbcTemplate para GIOM -->
+    <bean id="jdbctemplateSic" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSourceGiom"/>
+    </bean>
+
+
+
+<!--    PARA CONECTAR CON EL SISTEMA SGU-->
+    <!--  <bean id="dataSourceSgu"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="url" value="jdbc:oracle:thin:USU_SGU/USU_SGU@180.183.112.78:1560:INTRNETD"/>
+        </bean>
+-->
+        <!-- WEBLOGIC CONEXION COMENTAR PARA TOMCAT -->
+
+<!--    <jee:jndi-lookup id="dataSourceGiom"-->
+<!--                     jndi-name="jdbc/giom"-->
+<!--                     expected-type="javax.sql.DataSource" />-->
+
+
+<!--    <jee:jndi-lookup id="dataSourceSgu"-->
+<!--                        jndi-name="jdbc/sgu"-->
+<!--                        expected-type="javax.sql.DataSource" />-->
+    
+
+<!--    PARA EL SISTEMA SGU-->
+   <!--   <bean id="jdbctemplateSgu" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSourceSgu"></property>
+    </bean>
+>-->
+</beans>
